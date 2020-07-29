@@ -1,0 +1,11 @@
+import mysql.connector
+mydb = mysql.connector.connect(host="localhost", user="root", password="Stixis@123", database="YOBODB")
+mycursor = mydb.cursor()  # MyCursor means user can fetch data from DB,insert data inside tables
+sql = "update useraccount set loyaltypoints='4' where userid=1 "
+mycursor.execute(sql)
+mydb.commit();
+print("Record updated successfully")# Data gets stored inside mycursor in form of a box.
+selectsql= "select * from useraccount where userid=1"
+mycursor.execute(selectsql)
+result = mycursor.fetchone()    # Fetch one row of data
+print(result)
