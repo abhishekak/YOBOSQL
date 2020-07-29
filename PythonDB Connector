@@ -6,3 +6,13 @@ mycursor.execute(sql)   # Data gets stored inside mycursor in form of a box.
 result = mycursor.fetchall()    # Fetch one row of data
 for i in result:
     print(i)
+
+
+
+
+
+
+# Aim: Create class and methods for Python DB access APIs - demo for updating loyalty points
+
+# Description
+# Using Python DB COnnector APIs to create a class and Methods for others to use.  Create documentation for this.
