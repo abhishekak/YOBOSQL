@@ -1,98 +1,69 @@
-create database YOBODB;
-use YOBODB;
-create table UserAccount
+create database YOBODB;   # Once you copy-paste code, Step 1: Run only this code by selecting the query
+use YOBODB;   # Step2: select(Highlight) this query & run it.So that this DataBase starts to run.(Thunder Symbol which you see)
+
+create table UserAccount		# Step 3: Select(Highlight) the UserAccount Table & run it.(Thunder Symbol which you see)
 (
-	userid int primary key auto_increment,
+	userid int primary key,
 	Firstname varchar(50),Lastname varchar(50),Password varchar(20),LoyaltyPoints int,
     Email varchar(50),Phone varchar(20),WalletAmount int,Credibility int,
     CreatedTime timestamp,Address varchar(50)
 )
-insert into UserAccount('Sandeep','K',crypt('vikas'),6,'abc@yobomail.com','67895412',78,8,'2019-09-15','torronto express')
-insert into UserAccount(userid,Firstname,Lastname,Password,LoyaltyPoints,Email,Phone,WalletAmount,Credibility,CreatedTime,Address) 
-values(1,'Sandeep','K','vikas',6,'abc@yobomail.com','67895412',78,8,'2019-09-15','torrontoexpress');
-insert into UserAccount values(2,'Kaushik','Reddy','kaus',5,'kaushik@yobomail.com','7890965689',9890,7,'2020-09-17','expressgitway')
-insert into UserAccount values(3,'Vineet','kallel','vin',6,'vineet@yobomail.com','8976578906',789,8,'2020-10-24','jaguars')
-insert into UserAccount values(4,'Rakesh','Goel','rak',7,'rakesh@yobomail.com','6879865609',689,6,'2019-08-07','marathalli')
-update UserAccount
-set LoyaltyPoints=9 where userid=1
-select * from UserAccount
-create table Genre
+  select * from UserAccount where userid=4
+
+create table Genre      # Step 4: Select(Highlight) the Genre Table & run it.(Thunder Symbol which you see)
 (
-	genreid int primary key auto_increment,
+	genreid int primary key,
     GenreName varchar(50)
 )
-insert into Genre(genreid,GenreName) values('','Vignesh')
-insert into Genre values(3,'Kaushik')
-insert into Genre values(4,'Karthik')
-select * from Genre
-create table Video_Library
+    select * from Genre
+
+create table Video_Library # Step 5: Select(Highlight) the Video_Library Table & run it.(Thunder Symbol which you see)
 (
-	videoid int primary key auto_increment,genreid int,
+	videoid int primary key,genreid int,
     foreign key(genreid) references Genre(genreid),
 	creator_userid int,video_title varchar(20),Duration datetime,
     CurrentPrice bigint,LastWeekPrice int,LastWeekRating int,
     CurrentRating int,DemandLastWeek bigint,DemandThisWeek bigint
 )
-insert into Video_Library values(1,1,1,'YoboVideos','2020-10-18',8790,765,7,8,9,18)
-insert into Video_Library values(2,2,2,'YoboBoxOffice','2020-10-19',8791,766,6,9,10,19)
-insert into Video_Library values(3,3,3,'YoboVideosDetails','2020-10-20',8792,767,8,5,11,20)
-insert into Video_Library values(4,4,4,'Yobo','2020-10-21',8792,767,7,10,12,21)
-select * from Video_Library
-create table Video
+   select * from Video_Library
+
+create table Video     # Step 6: Select(Highlight) the Video Table & run it.(Thunder Symbol which you see)
 (
-	Vidid int primary key auto_increment,AboutVideo varchar(100),
+	Vidid int primary key,AboutVideo varchar(100),
     CatalogCategory varchar(50),Subcategory varchar(50),
     VideoFormat varchar(50),OfferPrice varchar(20)
 )
-insert into Video values(1,'VideoBoxOffice','Education','Edu','Long','789')
-insert into Video values(2,'VideoOffice','Movies','Mov','Mediocore','790')
-insert into Video values(3,'Video','Entertainment','Ent','Small','7909')
-insert into Video values(4,'VideoRelated','Outgoing','Out','Long','7999')
-select * from Video
+   select * from Video
 
-create table Reviewer
+create table Reviewer         # Step 6: Select(Highlight) the Reviewer Table & run it.(Thunder Symbol which you see)
 (
-	reviewerid int primary key auto_increment,
+	reviewerid int primary key,
     ReviewingList varchar(50),
 	no_of_reviews int
 )
-insert into Reviewer values(1,'Youtube Box Office',1)
-insert into Reviewer values(2,'Box Office',2)
-insert into Reviewer values(3,'Netflix Box Office',3)
-insert into Reviewer values(4,'Netflix Office',4)
-select * from Reviewer
+   select * from Reviewer
 
-create table Downloads
+create table Downloads    # Step 7: Select(Highlight) the Downloads Table & run it.(Thunder Symbol which you see)
 (
-	download_id int primary key auto_increment,
+	download_id int primary key,
     videoid int, foreign key(videoid) references Video_Library(videoid),
     PricePaid int
 )
-insert into Downloads values(1,1,850)
-insert into Downloads values(2,2,860)
-insert into Downloads values(3,3,870)
-insert into Downloads values(4,4,880)
 select * from Downloads
-create table Uploads
+
+create table Uploads   # Step 6: Select(Highlight) the Uploads Table & run it.(Thunder Symbol which you see)
 (
-	uploadid int primary key auto_increment,
+	uploadid int primary key ,
 	videoid int,foreign key(videoid) references Video_Library(videoid),
 	ProposedPrice int
 )
-insert into Uploads values(1,1,7000)
-insert into Uploads values(2,2,7500)
-insert into Uploads values(3,3,8000)
-insert into Uploads values(4,4,8500)
-select * from Uploads
-create table Log
+   select * from Uploads
+   
+create table Log     # Step 6: Select(Highlight) the Log Table & run it.(Thunder Symbol which you see)
 (
-	logid int primary key auto_increment,
+	logid int primary key,
     action_time timestamp,userid int,foreign key(userid) references UserAccount(userid),
     videoid int,foreign key(videoid) references Video_Library(videoid),
     Amount float
 )
-insert into Log values(1,'2020-09-19 16:08:18',1,1,7890)
-insert into Log values(2,'2020-09-20 16:09:20',2,2,7891)
-insert into Log values(3,'2020-09-21 16:10:21',3,3,7892)
-insert into Log values(4,'2020-09-22 17:09:20',4,4,7893)
 select * from Log
